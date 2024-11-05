@@ -20,7 +20,8 @@ services:
 
     labels:
     - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-3-websecure.middlewares=traefik-forward-auth@file
-    
+    - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-4-websecure.middlewares=traefik-forward-auth@file
+
     networks:
     - dokploy-network
 
