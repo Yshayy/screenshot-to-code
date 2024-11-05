@@ -24,6 +24,7 @@ services:
       - traefik.http.routers.screenshottocode-api.priority=100
       - traefik.http.routers.screenshottocode-api.tls.certresolver=letsencrypt
       - traefik.http.services.screenshottocode-api.loadbalancer.server.port=7001
+      - traefik.http.routers.screenshottocode-api.service=screenshottocode-api
       - "traefik.http.routers.screenshottocode-api.rule=Host(`screenshot-to-code.apps-cluster.livecycle.xyz`)"
       
     networks:
