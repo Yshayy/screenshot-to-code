@@ -19,10 +19,14 @@ services:
       - "${BACKEND_PORT:-7001}:${BACKEND_PORT:-7001}"
 
     labels:
-    - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-3-websecure.middlewares=traefik-forward-auth@file
-    - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-4-websecure.middlewares=traefik-forward-auth@file
-    - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-3-websecure.priority=10
-    - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-4-websecure.priority=10
+                -traefik.http.routers.screenshottocode-api.entrypoints=websecure
+                - traefik.http.routers.screenshottocode-api.middlewares=traefik-forward-auth@file
+                - traefik.http.routers.screenshottocode-api.priority=10
+                - traefik.http.routers.screenshottocode-api.rule="Host(`screenshot-to-code.apps-cluster.livecycle.xyz`) && (PathPrefix(`/api`) || PathPrefix(`/generate-code`))"
+                - traefik.http.routers.screenshottocode-api.service=screenshottocode-screenshot-to-code-wgxpyh-4-websecure
+                - traefik.http.routers.screenshottocode-api.tls.certresolver=letsencrypt
+                - traefik.http.services.screenshottocode-api.loadbalancer.server.port=7001
+                - traefik.http.services.screenshottocode-api.loadbalancer.server.port=5173
 
     networks:
     - dokploy-network
