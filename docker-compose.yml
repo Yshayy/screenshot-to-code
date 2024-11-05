@@ -28,6 +28,8 @@ services:
       dockerfile: Dockerfile
     networks:
     - dokploy-network
+    labels:
+    - "traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-2-web.middlewares": "traefik-forward-auth@file",
     ports:
       - "5173:5173"
       
