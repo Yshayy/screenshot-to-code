@@ -17,11 +17,20 @@ services:
     ports:
       - "${BACKEND_PORT:-7001}:${BACKEND_PORT:-7001}"
 
+    networks:
+    - dokploy-network
+
     command: poetry run uvicorn main:app --host 0.0.0.0 --port ${BACKEND_PORT:-7001}
   
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    networks:
+    - dokploy-network
     ports:
       - "5173:5173"
+      
+networks:
+ dokploy-network:
+   external: true
