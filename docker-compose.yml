@@ -26,7 +26,6 @@ services:
       - traefik.http.routers.screenshottocode-api.service=screenshottocode-screenshot-to-code-wgxpyh-4-websecure
       - traefik.http.routers.screenshottocode-api.tls.certresolver=letsencrypt
       - traefik.http.services.screenshottocode-api.loadbalancer.server.port=7001
-      - traefik.http.services.screenshottocode-api.loadbalancer.server.port=5173
 
     networks:
     - dokploy-network
