@@ -13,10 +13,14 @@ services:
     environment:
       #- BACKEND_PORT=7001   # if you change the port, make sure to also change the VITE_WS_BACKEND_URL at frontend/.env.local
       - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
     
     ports:
       - "${BACKEND_PORT:-7001}:${BACKEND_PORT:-7001}"
 
+    labels:
+    - "traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-2-web.middlewares": "traefik-forward-auth@file",
+    
     networks:
     - dokploy-network
 
@@ -28,6 +32,9 @@ services:
       dockerfile: Dockerfile
     networks:
     - dokploy-network
+    environment:
+    - VITE_HTTP_BACKEND_URL
+    - VITE_WS_BACKEND_URL
     labels:
     - "traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-2-web.middlewares": "traefik-forward-auth@file",
     ports:
