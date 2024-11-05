@@ -42,6 +42,7 @@ services:
     - VITE_WS_BACKEND_URL
     labels:
     - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-2-websecure.middlewares=traefik-forward-auth@file
+    - traefik.http.routers.screenshottocode-screenshot-to-code-wgxpyh-2-websecure.priority=10
     ports:
       - "5173:5173"
       
